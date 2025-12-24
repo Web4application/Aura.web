@@ -1,0 +1,12 @@
+Input Integrated:    -27.5 LUFS
+Input True Peak:      -4.5 dBTP
+Input LRA:            18.1 LU
+Input Threshold:     -39.2 LUFS
+
+Output Integrated:   -16.0 LUFS
+Output True Peak:     -1.5 dBTP
+Output LRA:           14.6 LU
+Output Threshold:    -27.2 LUFS
+
+Normalization Type:   Dynamic
+Target Offset:        +0.0 LU

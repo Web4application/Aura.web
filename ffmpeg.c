@@ -1,7 +1,7 @@
 /* 
  * Copyright (c) 2015 Kyle Swanson <k@ylo.ph>.
  *
- * This file is part of FFmpeg.
+ * This file is part of FFmpeg. 
  *
  * FFmpeg is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public License

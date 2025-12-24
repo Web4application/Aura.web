@@ -1,6 +1,6 @@
 /* 
  * Copyright (c) 2015 Kyle Swanson <k@ylo.ph>.
- *
+ * 
  * This file is part of FFmpeg. 
  *
  * FFmpeg is free software; you can redistribute it and/or

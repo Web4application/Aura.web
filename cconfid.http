@@ -1,4 +1,4 @@
-pw-link -io
+pw-link -io 
   alsa_output.usb-Native_Instruments_Komplete_Audio_6_76C51E0D-00.analog-stereo-out-ab:monitor_FL
   alsa_output.usb-Native_Instruments_Komplete_Audio_6_76C51E0D-00.analog-stereo-out-ab:monitor_FR
   alsa_output.usb-Native_Instruments_Komplete_Audio_6_76C51E0D-00.analog-stereo-out-ab:monitor_AUX0

@@ -41,6 +41,9 @@ cd libQuotient
 git clone <https://github.com/matrix-org/matrix.to.git> qmatrixclient
 cd matrix.to
 
+git clone https://github.com/jothepro/doxygen-awesome-css.git
+cd doxygen-awesome-css
+
 # Create a build folder
 mkdir build && cd build
 
@@ -52,3 +55,19 @@ make -j$(nproc)
 
 # Optional: Install system-wide
 sudo make install
+
+# create and configure 
+auraradio-docker/
+├─ docker-compose.yml
+├─ aura-api/           # Aura.radio backend
+│   └─ ... (Python/FastAPI code)
+├─ liquidsoap/         # Liquidsoap config & playlist
+│   ├─ radio.liq
+│   └─ playlist.m3u
+├─ icecast/
+│   └─ icecast.xml
+├─ matrix-daemon/      # C++ qmatrixclient daemon
+│   ├─ CMakeLists.txt
+│   └─ daemon.cpp
+└─ web/
+    └─ index.html      # HTML5 player

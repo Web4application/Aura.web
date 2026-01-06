@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura.radio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      /* Prevent horizontal scroll */
+      scroll-behavior: smooth;
+      /* Smooth scrolling */
+    }
+
+    a {
+      color: #ff4d6d;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #ffffff;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background-color: #1a1a1a;
+      padding: 20px 0;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      /* Ensure header stays on top */
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li:first-child {
+      margin-left: 0;
+    }
+
+    /* Hero Section */
+    #hero {
+      background-color: #1a1a1a;
+      padding: 100px 20px;
+    }
+
+    #hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    #hero p {
+      font-size: 1.2em;
+      color: #ddd;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #ff4d6d;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #e60026;
+    }
+
+    /* Audio Player */
+    audio {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    /* Show Schedule */
+    #schedule table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    #schedule th,
+    #schedule td {
+      border: 1px solid #333;
+      padding: 12px;
+      text-align: left;
+    }
+
+    #schedule th {
+      background-color: #333;
+      color: #ffffff;
+    }
+
+    /* Now Playing */
+    #now-playing {
+      background-color: #222;
+      padding: 30px 20px;
+    }
+
+    /* Podcast Section */
+    #podcasts {
+      text-align: left;
+    }
+
+    .podcast-item {
+      background-color: #222;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .podcast-item h3 {
+      margin-bottom: 10px;
+    }
+
+    .podcast-actions {
+      margin-top: 10px;
+    }
+
+    .podcast-actions a {
+      margin-right: 10px;
+    }
+
+    /* About Section */
+    .dj-bio {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .dj-bio img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: cover;
+    }
+
+    /* Contact Section */
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    #contact label {
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    #contact input,
+    #contact textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #333;
+      background-color: #333;
+      color: #ffffff;
+      border-radius: 5px;
+    }
+
+    #contact button {
+      background-color: #ff4d6d;
+      color: #ffffff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    #contact button:hover {
+      background-color: #e60026;
+    }
+
+    /* Social Links */
+    #social {
+      text-align: center;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 1.5em;
+      transition: transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1a1a1a;
+      padding: 20px 0;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      .dj-bio {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .dj-bio img {
+        margin: 0 auto 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>Aura.radio</h1>
+      <nav>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#now-playing">Now Playing</a></li>
+          <li><a href="#podcasts">Podcasts</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <h1>Automate Your Online Radio</h1>
+      <p>Experience the future of radio broadcasting with Aura.radio.</p>
+      <audio controls>
+        <source src="https://web4application.github.io/Aura.radio/live-stream.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio>
+      <a href="#schedule" class="btn">View Full Show Schedule</a>
+    </div>
+  </section>
+
+  <!-- Show Schedule -->
+  <section id="schedule">
+    <div class="container">
+      <h2>Show Schedule</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Show Name</th>
+            <th>DJ/Host</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monday 8:00 PM</td>
+            <td>Electronic Beats</td>
+            <td>DJ Nova</td>
+          </tr>
+          <tr>
+            <td>Tuesday 9:00 PM</td>
+            <td>Indie Hour</td>
+            <td>Sarah J</td>
+          </tr>
+          <tr>
+            <td>Wednesday 7:00 PM</td>
+            <td>Classic Rock</td>
+            <td>Rockin' Rick</td>
+          </tr>
+          <tr>
+            <td>Thursday 8:00 PM</td>
+            <td>Hip Hop Nation</td>
+            <td>DJ Flow</td>
+          </tr>
+          <tr>
+            <td>Friday 10:00 PM</td>
+            <td>Friday Night Dance</td>
+            <td>Mix Master Mike</td>
+          </tr>
+          <tr>
+            <td>Saturday 2:00 PM</td>
+            <td>Chill Vibes</td>
+            <td>Zen Zoe</td>
+          </tr>
+          <tr>
+            <td>Sunday 1:00 PM</td>
+            <td>Sunday Brunch Sounds</td>
+            <td>Sunny Sam</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Now Playing -->
+  <section id="now-playing">
+    <div class="container">
+      <h2>Now Playing</h2>
+      <p id="now-playing-info">Loading...</p>
+    </div>
+  </section>
+
+  <!-- Podcasts -->
+  <section id="podcasts">
+    <div class="container">
+      <h2>Recent Podcasts</h2>
+      <div class="podcast-item">
+        <h3>Electronic Beats - Episode 12</h3>
+        <p>Featuring the latest electronic tracks and exclusive interviews.</p>
+        <div class="podcast-actions">
+          <a href="#" class="btn">
+            <i class="fas fa-play"></i> Play
+          </a>
+          <a href="#" class="btn">
+            <i class="fas fa-download"></i> Download
+          </a>
+        </div>
+      </div>
+      <div class="podcast-item">
+        <h3>Indie Hour - Best of 2023</h3>
+        <p>A compilation of the best indie tracks from the past year.</p>
+        <div class="podcast-actions">
+          <a href="#" class="btn">
+            <i class="fas fa-play"></i> Play
+          </a>
+          <a href="#" class="btn">
+            <i class="fas fa-download"></i> Download
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2>About Aura.radio</h2>
+      <p>Aura.radio is an online radio station dedicated to bringing you the best music and entertainment. We feature a
+        diverse range of genres and talented DJs from around the world.</p>
+
+      <div class="dj-bio">
+        <img src="https://via.placeholder.com/100" alt="DJ Nova">
+        <div>
+          <h3>DJ Nova</h3>
+          <p>DJ Nova is a master of electronic music, bringing you the latest beats and classic tracks every Monday
+            night.</p>
+        </div>
+      </div>
+
+      <div class="dj-bio">
+        <img src="https://via.placeholder.com/100" alt="Sarah J">
+        <div>
+          <h3>Sarah J</h3>
+          <p>Sarah J curates the perfect indie playlist for your Tuesday evenings, showcasing emerging artists and indie
+            favorites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Social Links -->
+  <section id="social">
+    <div class="container">
+      <h2>Follow Us</h2>
+      <div class="social-links">
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        <!-- Added Instagram -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Aura.radio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Now Playing Update
+    function updateNowPlaying() {
+      // Replace with actual API call or data source
+      const nowPlayingData = {
+        show: "Electronic Beats",
+        dj: "DJ Nova",
+        song: "Sunset Drive - Chillwave Mix"
+      };
+
+      const nowPlayingText = `Currently playing: ${nowPlayingData.show} with ${nowPlayingData.dj} - ${nowPlayingData.song}`;
+      document.getElementById("now-playing-info").textContent = nowPlayingText;
+    }
+
+    // Initial update
+    updateNowPlaying();
+
+    // Update every 30 seconds
+    setInterval(updateNowPlaying, 30000);
+
+
+    // Contact Form Submission (Placeholder)
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      alert("Form submission is a placeholder. No actual backend implemented.");
+      // In a real application, you would handle the form submission here,
+      // sending the data to a backend server.
+    });
+  </script>
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura.radio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: #ff4d6d;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #ffffff;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background-color: #1a1a1a;
+      padding: 20px 0;
+      border-bottom: 1px solid #333;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li:first-child {
+      margin-left: 0;
+    }
+
+    /* Hero Section */
+    #hero {
+      background-color: #1a1a1a;
+      padding: 100px 20px;
+    }
+
+    #hero h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    #hero p {
+      font-size: 1.2em;
+      color: #ddd;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #ff4d6d;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #e60026;
+    }
+
+    /* Audio Player */
+    audio {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    /* Show Schedule */
+    #schedule table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    #schedule th,
+    #schedule td {
+      border: 1px solid #333;
+      padding: 12px;
+      text-align: left;
+    }
+
+    #schedule th {
+      background-color: #333;
+      color: #ffffff;
+    }
+
+    /* Now Playing */
+    #now-playing {
+      background-color: #222;
+      padding: 30px 20px;
+    }
+
+    /* Podcast Section */
+    #podcasts {
+      text-align: left;
+    }
+
+    .podcast-item {
+      background-color: #222;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .podcast-item h3 {
+      margin-bottom: 10px;
+    }
+
+    .podcast-actions {
+      margin-top: 10px;
+    }
+
+    .podcast-actions a {
+      margin-right: 10px;
+    }
+
+    /* About Section */
+    #about .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dj-bio {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      text-align: left;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .dj-bio img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-right: 20px;
+      object-fit: cover;
+    }
+
+    /* Contact Section */
+    #contact form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    #contact label {
+      margin-top: 10px;
+      text-align: left;
+    }
+
+    #contact input,
+    #contact textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #333;
+      background-color: #333;
+      color: #ffffff;
+      border-radius: 5px;
+    }
+
+    #contact button {
+      background-color: #ff4d6d;
+      color: #ffffff;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    #contact button:hover {
+      background-color: #e60026;
+    }
+
+    /* Social Links */
+    #social {
+      text-align: center;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 1.5em;
+      transition: transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #1a1a1a;
+      padding: 20px 0;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      #about .container {
+        align-items: stretch;
+      }
+
+      .dj-bio {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+
+      .dj-bio img {
+        margin: 0 auto 20px;
+      }
+    }
+
+    /* Custom Styles */
+    .podcast-actions .btn:hover {
+      background-color: #e60026;
+    }
+
+    #social .social-links a {
+      color: #fff;
+    }
+
+    #social .social-links a:hover {
+      color: #ff4d6d;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">Aura.radio</div>
+      <nav>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#now-playing">Now Playing</a></li>
+          <li><a href="#podcasts">Podcasts</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <h1>Automate Your Online Radio</h1>
+      <p>Experience the future of radio broadcasting with Aura.radio.</p>
+      <audio controls>
+        <source src="https://web4application.github.io/Aura.radio/live-stream.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio>
+      <a href="#schedule" class="btn">View Full Show Schedule</a>
+    </div>
+  </section>
+
+  <!-- Show Schedule -->
+  <section id="schedule">
+    <div class="container">
+      <h2>Show Schedule</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Show Name</th>
+            <th>DJ/Host</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monday 8:00 PM</td>
+            <td>Electronic Beats</td>
+            <td>DJ Nova</td>
+          </tr>
+          <tr>
+            <td>Tuesday 9:00 PM</td>
+            <td>Indie Hour</td>
+            <td>Sarah J</td>
+          </tr>
+          <tr>
+            <td>Wednesday 7:00 PM</td>
+            <td>Classic Rock</td>
+            <td>Rockin' Rick</td>
+          </tr>
+          <tr>
+            <td>Thursday 8:00 PM</td>
+            <td>Hip Hop Nation</td>
+            <td>DJ Flow</td>
+          </tr>
+          <tr>
+            <td>Friday 10:00 PM</td>
+            <td>Friday Night Dance</td>
+            <td>Mix Master Mike</td>
+          </tr>
+          <tr>
+            <td>Saturday 2:00 PM</td>
+            <td>Chill Vibes</td>
+            <td>Zen Zoe</td>
+          </tr>
+          <tr>
+            <td>Sunday 1:00 PM</td>
+            <td>Sunday Brunch Sounds</td>
+            <td>Sunny Sam</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Now Playing -->
+  <section id="now-playing">
+    <div class="container">
+      <h2>Now Playing</h2>
+      <p id="now-playing-info">Loading...</p>
+    </div>
+  </section>
+
+  <!-- Podcasts -->
+  <section id="podcasts">
+    <div class="container">
+      <h2>Recent Podcasts</h2>
+      <div class="podcast-item">
+        <h3>Electronic Beats - Episode 12</h3>
+        <p>Featuring the latest electronic tracks and exclusive interviews.</p>
+        <div class="podcast-actions">
+          <a href="#" class="btn">
+            <i class="fas fa-play"></i> Play
+          </a>
+          <a href="#" class="btn">
+            <i class="fas fa-download"></i> Download
+          </a>
+        </div>
+      </div>
+      <div class="podcast-item">
+        <h3>Indie Hour - Best of 2023</h3>
+        <p>A compilation of the best indie tracks from the past year.</p>
+        <div class="podcast-actions">
+          <a href="#" class="btn">
+            <i class="fas fa-play"></i> Play
+          </a>
+          <a href="#" class="btn">
+            <i class="fas fa-download"></i> Download
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2>About Aura.radio</h2>
+      <p>Aura.radio is an online radio station dedicated to bringing you the best music and entertainment. We feature a
+        diverse range of genres and talented DJs from around the world.</p>
+
+      <div class="dj-bio">
+        <img src="https://via.placeholder.com/100" alt="DJ Nova">
+        <div>
+          <h3>DJ Nova</h3>
+          <p>DJ Nova is a master of electronic music, bringing you the latest beats and classic tracks every Monday
+            night.</p>
+        </div>
+      </div>
+
+      <div class="dj-bio">
+        <img src="https://via.placeholder.com/100" alt="Sarah J">
+        <div>
+          <h3>Sarah J</h3>
+          <p>Sarah J curates the perfect indie playlist for your Tuesday evenings, showcasing emerging artists and indie
+            favorites.</p>
+        </div>
+      </div>
+      <div class="dj-bio">
+        <img src="https://via.placeholder.com/100" alt="Rockin' Rick">
+        <div>
+          <h3>Rockin' Rick</h3>
+          <p>Rockin' Rick plays the best of Classic Rock every Wednesday.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Social Links -->
+  <section id="social">
+    <div class="container">
+      <h2>Follow Us</h2>
+      <div class="social-links">
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Aura.radio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Now Playing Update
+    function updateNowPlaying() {
+      const nowPlayingData = {
+        show: "Electronic Beats",
+        dj: "DJ Nova",
+        song: "Sunset Drive - Chillwave Mix"
+      };
+
+      const nowPlayingText = `Currently playing: ${nowPlayingData.show} with ${nowPlayingData.dj} - ${nowPlayingData.song}`;
+      document.getElementById("now-playing-info").textContent = nowPlayingText;
+    }
+
+    // Initial call to set the content immediately
+    updateNowPlaying();
+
+    // Update every 30 seconds (30000 milliseconds)
+    setInterval(updateNowPlaying, 30000);
+
+    // Contact Form Submission
+    document.getElementById("contact-form").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      // Basic form validation
+      if (!name || !email || !message) {
+        alert("Please fill in all fields.");
+        return; // Stop the function if validation fails
+      }
+
+      // Email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return; // Stop if email is invalid
+      }
+
+      // Here you would typically send the data to a backend server using AJAX (fetch or XMLHttpRequest).
+      // For this example, we'll just display an alert.
+      alert(`Form submitted!\nName: ${name}\nEmail: ${email}\nMessage: ${message}`);
+
+      // Clear the form
+      document.getElementById("contact-form").reset();
+    });
+  </script>
+
+</body>
+
+<script
+//
+The repositories are at git.xiph.org and are mirrored to GitHub. All repository names start with icecast- for clarity.
+Name	Anonymous access URL	SSH URL (only project members)	Comments
+Icecast server www.gitlab.xiph.org/xiph/icecast-server.git" ssh://git@gitlab.xiph.org/xiph/icecast-server.git	
+IceS	https://gitlab.xiph.org/xiph/icecast-ices.git	ssh://git@gitlab.xiph.org/xiph/icecast-ices.git	
+libshout	https://gitlab.xiph.org/xiph/icecast-libshout.git	ssh://git@gitlab.xiph.org/xiph/icecast-libshout.git	
+Icecast directory	https://gitlab.xiph.org/xiph/icecast-directory.git	ssh://git@gitlab.xiph.org/xiph/icecast-directory.git	As seen running on http://dir.xiph.org - soon™
+Icecast shared code	https://gitlab.xiph.org/xiph/icecast-common.git	ssh://git@gitlab.xiph.org/xiph/icecast-common.git	No need to check out separately, see below.
+Icecast shared autofoo	https://gitlab.xiph.org/xiph/icecast-m4.git		
+</document><script>
+</html>
+  
+</document>
